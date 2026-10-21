@@ -2,7 +2,7 @@
 
 # AtmajaCar
 
-**Rental mobil dengan cek ketersediaan per tanggal dan rincian biaya yang terbuka.**
+**Rental mobil dengan pemeriksaan ketersediaan per tanggal dan rincian biaya yang terbuka.**
 
 [![Demo](https://img.shields.io/badge/demo-live-b45309?style=flat-square)](https://atmajadesna.github.io/atmajacar/)
 ![Tanpa build step](https://img.shields.io/badge/build-tanpa%20build%20step-2f6f4f?style=flat-square)
@@ -12,48 +12,52 @@
 
 </div>
 
-## Masalahnya
+## Latar Belakang
 
-Situs rental mobil biasanya cuma menampilkan daftar mobil dan nomor WhatsApp. Penyewa tidak tahu unit mana yang benar-benar kosong di tanggal dia, dan biaya baru muncul di akhir percakapan.
+Situs rental mobil umumnya hanya menampilkan daftar kendaraan beserta nomor kontak. Penyewa tidak memperoleh informasi unit mana yang benar-benar tersedia pada tanggal yang dipilih, dan rincian biaya baru diketahui setelah percakapan berlangsung.
 
-## Yang menarik di dalamnya
+## Poin Teknis
 
-**Ketersediaan per rentang tanggal** — Dua pesanan dianggap bentrok kalau rentangnya beririsan — `a1 < b2 && b1 < a2`. Perbandingan pakai string ISO supaya tidak perlu konversi Date.
-**Rincian biaya yang berubah langsung** — Supir, antar-jemput, asuransi, dan deposit dihitung ulang tiap opsi diubah. Total dan deposit dipisah supaya jelas mana yang dikembalikan.
-**Panel kelola** — Status pesanan: Menunggu → Disetujui → Berjalan → Selesai. Pesanan batal otomatis melepas unitnya.
-**Foto armada tanpa latar** — Latar foto dipotong dengan model segmentasi, lalu tiap mobil diletakkan di kanvas 960×600 dengan skala seragam.
+**Ketersediaan berdasarkan rentang tanggal.** Dua pesanan dinyatakan bertabrakan apabila rentang tanggalnya beririsan — `a1 < b2 && b1 < a2`. Perbandingan menggunakan string ISO sehingga tidak memerlukan konversi objek Date.
 
-## Jalanin
+**Rincian biaya yang diperbarui langsung.** Komponen supir, antar-jemput, asuransi, dan deposit dihitung ulang setiap opsi diubah. Total sewa dan deposit dipisahkan agar jelas komponen mana yang dikembalikan.
 
-Buka `index.html` di browser, atau jalankan server lokal:
+**Panel pengelolaan pesanan.** Status pesanan: Menunggu → Disetujui → Berjalan → Selesai. Pesanan berstatus batal otomatis melepaskan unit terkait.
+
+**Foto armada tanpa latar.** Latar foto dipisahkan menggunakan model segmentasi, kemudian setiap kendaraan ditempatkan pada kanvas 960×600 dengan skala seragam.
+
+## Menjalankan
+
+Berkas `index.html` dapat dibuka langsung pada peramban, atau dijalankan melalui server lokal:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Tidak ada dependency, tidak ada build step. Semua jalan di browser.
+Tidak diperlukan dependensi maupun proses build. Seluruh proses berjalan pada peramban.
 
-## Struktur
+## Struktur Berkas
 
 ```
-index.html    tampilan dan struktur halaman
-app.js        seluruh logika: data, hitungan, penyimpanan
-styles.css    tata letak dan komponen
+index.html    struktur halaman dan tampilan
+app.js        seluruh logika: data, perhitungan, dan penyimpanan
+styles.css    tata letak dan komponen antarmuka
 tokens.css    warna, ukuran teks, dan spasi sebagai variabel
 ```
 
 ## Catatan
 
-Data pesanan disimpan di `localStorage` perangkat sendiri — bukan backend, tidak ada data yang terkirim.
+Data pesanan disimpan pada `localStorage` perangkat, bukan pada basis data server, sehingga tidak ada data yang dikirimkan ke pihak lain.
 
-Dibuat dengan JavaScript, CSS, HTML, tanpa framework.
+Dibangun menggunakan JavaScript, CSS, dan HTML, tanpa kerangka kerja.
 
-## Kredit foto
+## Kredit Foto
 
-Foto armada dari Wikimedia Commons, lisensi **CC BY-SA 4.0**. Latarnya sudah dihapus dan
-diganti warna seragam, jadi gambar di `img/` adalah karya turunan dengan lisensi yang sama.
+Foto armada berasal dari Wikimedia Commons dengan lisensi CC BY-SA 4.0. Latar telah dipisahkan
+dan diganti warna seragam, sehingga gambar pada direktori `img/` merupakan karya turunan dengan
+lisensi yang sama.
 
-| Mobil | Berkas asal |
+| Kendaraan | Berkas asal |
 | --- | --- |
 | Toyota Avanza | [2022 Toyota Avanza 1.3 E, IIMS Hybrid](https://commons.wikimedia.org/wiki/File:2022_Toyota_Avanza_1.3_E,_IIMS_Hybrid,_Grand_City,_Central_Surabaya.jpg) |
 | Toyota Innova Zenix | [2022 Toyota Kijang Innova Zenix V (Indonesia)](https://commons.wikimedia.org/wiki/File:2022_Toyota_Kijang_Innova_Zenix_V_(Indonesia)_front_view.jpg) |
