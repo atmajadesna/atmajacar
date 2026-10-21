@@ -1,0 +1,71 @@
+/* Hallmark · macrostructure: Marquee Panel · tone: utilitarian-premium · anchor hue: amber 70
+ * theme: charcoal band + amber accent · display: Archivo · body: Inter · numerals: JetBrains Mono
+ */
+:root {
+  /* warna */
+  --paper: oklch(98.4% 0.003 250);
+  --paper-2: oklch(96% 0.005 250);
+  --paper-3: oklch(92.5% 0.008 250);
+  --ink: oklch(19% 0.018 255);
+  --ink-2: oklch(30% 0.015 255);
+  --ink-3: oklch(45% 0.012 255);
+  --muted: oklch(56% 0.010 255);
+  --line: oklch(88% 0.008 255);
+  --line-2: oklch(82% 0.010 255);
+  --band: oklch(17.5% 0.014 255);
+  --band-2: oklch(23% 0.016 255);
+  --on-band: oklch(96% 0.004 250);
+  --on-band-muted: oklch(72% 0.010 250);
+
+  --accent: oklch(74% 0.155 72);
+  --accent-strong: oklch(64% 0.170 62);
+  --accent-soft: oklch(94% 0.045 80);
+  --on-accent: oklch(21% 0.030 60);
+
+  --ok: oklch(52% 0.120 152);
+  --ok-soft: oklch(94% 0.040 152);
+  --bad: oklch(52% 0.170 27);
+  --bad-soft: oklch(95% 0.035 27);
+
+  /* font */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* ukuran teks */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+  --text-display: clamp(2.25rem, 6vw, 4rem);
+
+  /* spasi 4pt */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
+
+  --shadow-sm: 0 1px 2px oklch(20% 0.02 255 / 0.06);
+  --shadow: 0 8px 24px -12px oklch(20% 0.02 255 / 0.22);
+  --shadow-lg: 0 24px 60px -28px oklch(20% 0.02 255 / 0.35);
+
+  --measure: 62ch;
+}

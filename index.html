@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AtmajaCar — Sewa mobil Solo, hitungan jelas</title>
+<meta name="description" content="Rental mobil lepas kunci dan dengan supir di Surakarta. Cek ketersediaan per tanggal, rincian biaya terbuka, denda telat dihitung per jam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="#atas">ATMAJA<span>CAR</span></a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="#armada">Armada</a>
+      <a href="#cara">Cara sewa</a>
+      <a href="#kelola">Kelola</a>
+    </nav>
+    <div class="topbar__meta">Surakarta · 08.00–20.00</div>
+  </div>
+</header>
+
+<main id="atas">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero__eyebrow">Rental mobil · lepas kunci &amp; dengan supir</p>
+      <h1>Sewa mobil, hitungannya jelas dari awal.</h1>
+      <p class="hero__lede">
+        Tentukan tanggal, lihat mobil yang benar-benar kosong di tanggal itu, lalu baca rincian
+        biayanya sebelum bayar. Tidak ada biaya yang muncul belakangan.
+      </p>
+      <ul class="hero__catatan">
+        <li>Harga sudah termasuk pajak</li>
+        <li>Denda telat Rp25.000 per jam</li>
+        <li>Konfirmasi maksimal 15 menit</li>
+      </ul>
+    </div>
+  </section>
+
+  <form class="cari wrap" id="formCari" novalidate>
+    <div class="field">
+      <label for="cariMulai">Tanggal ambil</label>
+      <input type="date" id="cariMulai" name="mulai" required>
+    </div>
+    <div class="field">
+      <label for="cariKembali">Tanggal kembali</label>
+      <input type="date" id="cariKembali" name="kembali" required>
+    </div>
+    <div class="field">
+      <label for="cariKelas">Kelas mobil</label>
+      <select id="cariKelas" name="kelas">
+        <option value="semua">Semua kelas</option>
+        <option value="MPV">MPV</option>
+        <option value="SUV">SUV</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Pickup">Pickup</option>
+      </select>
+    </div>
+    <button class="btn btn--utama" type="submit">Cek ketersediaan</button>
+  </form>
+
+  <section class="bagian" id="armada">
+    <div class="wrap">
+      <div class="kepala">
+        <div>
+          <h2>Armada</h2>
+          <p id="ketArmada">Enam unit, semua rutin servis tiap 5.000 km. Pilih tanggal dulu untuk melihat yang kosong.</p>
+        </div>
+        <div class="filter" role="group" aria-label="Filter kelas mobil">
+          <button class="chip" type="button" data-kelas="semua" aria-pressed="true">Semua</button>
+          <button class="chip" type="button" data-kelas="MPV" aria-pressed="false">MPV</button>
+          <button class="chip" type="button" data-kelas="SUV" aria-pressed="false">SUV</button>
+          <button class="chip" type="button" data-kelas="Hatchback" aria-pressed="false">Hatchback</button>
+          <button class="chip" type="button" data-kelas="Pickup" aria-pressed="false">Pickup</button>
+        </div>
+      </div>
+      <div class="grid-armada" id="daftarArmada"></div>
+    </div>
+  </section>
+
+  <section class="bagian cara" id="cara">
+    <div class="wrap">
+      <div class="kepala">
+        <div>
+          <h2>Cara sewa</h2>
+          <p>Tiga langkah, semuanya bisa diselesaikan dari halaman ini.</p>
+        </div>
+      </div>
+      <ul class="langkah">
+        <li>
+          <b>01</b>
+          <h3>Pilih tanggal</h3>
+          <p>Isi tanggal ambil dan kembali. Sistem menyaring mobil yang benar-benar kosong di rentang itu.</p>
+        </li>
+        <li>
+          <b>02</b>
+          <h3>Susun paketnya</h3>
+          <p>Lepas kunci atau pakai supir, tambah antar-jemput dan asuransi. Total berubah langsung saat opsi diubah.</p>
+        </li>
+        <li>
+          <b>03</b>
+          <h3>Simpan kode booking</h3>
+          <p>Kode lima karakter dipakai petugas saat serah terima. Tunjukkan kode itu, kunci diserahkan.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bagian" id="kelola">
+    <div class="wrap">
+      <div class="kepala">
+        <div>
+          <h2>Kelola pesanan</h2>
+          <p>Panel petugas. Ubah status saat mobil diserahkan dan dikembalikan.</p>
+        </div>
+        <button class="btn btn--garis" type="button" id="tombolContoh">Isi contoh pesanan</button>
+      </div>
+
+      <dl class="statistik">
+        <div class="stat">
+          <dt>Pendapatan bulan ini</dt>
+          <dd id="statPendapatan">Rp0</dd>
+        </div>
+        <div class="stat">
+          <dt>Pesanan aktif</dt>
+          <dd id="statAktif">0</dd>
+        </div>
+        <div class="stat">
+          <dt>Unit sedang jalan</dt>
+          <dd id="statJalan">0</dd>
+        </div>
+        <div class="stat">
+          <dt>Utilisasi armada</dt>
+          <dd id="statUtilisasi">0%</dd>
+        </div>
+      </dl>
+
+      <div class="tabel-bungkus">
+        <table>
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Penyewa</th>
+              <th>Mobil</th>
+              <th>Tanggal</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="isiTabel"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__dalam">
+    <div>
+      <p><strong>AtmajaCar</strong> — rental mobil Surakarta.</p>
+      <p>Data di halaman ini contoh dan tersimpan di perangkat kamu sendiri.</p>
+    </div>
+    <p>Dibuat dengan HTML, CSS, dan JavaScript tanpa framework.</p>
+  </div>
+</footer>
+
+<dialog id="dialogSewa" aria-labelledby="judulDialog">
+  <div class="dialog__kepala">
+    <div>
+      <h2 id="judulDialog">Sewa mobil</h2>
+      <p id="subDialog">—</p>
+    </div>
+    <button class="tutup" type="button" id="tutupDialog" aria-label="Tutup">✕</button>
+  </div>
+
+  <div class="dialog__isi">
+    <div id="panelRincian">
+      <div class="opsi">
+        <label><input type="radio" name="paket" value="lepas" checked> Lepas kunci <span>+Rp0</span></label>
+        <label><input type="radio" name="paket" value="supir"> Dengan supir <span id="tarifSupir">+Rp150.000/hari</span></label>
+      </div>
+      <div class="opsi" style="margin-top: var(--space-3)">
+        <label><input type="checkbox" id="opsiAntar"> Antar-jemput bandara <span>+Rp75.000</span></label>
+        <label><input type="checkbox" id="opsiAsuransi"> Asuransi all risk <span>+Rp50.000/hari</span></label>
+      </div>
+
+      <div class="rincian" id="rincian" style="margin-top: var(--space-4)"></div>
+
+      <p class="pesan-salah" id="salahRincian" role="alert"></p>
+      <button class="btn btn--utama btn--penuh" type="button" id="lanjutData">Lanjut isi data penyewa</button>
+    </div>
+
+    <div id="panelData" hidden>
+      <form id="formSewa" novalidate>
+        <div class="field" style="margin-bottom: var(--space-3)">
+          <label for="nama">Nama lengkap</label>
+          <input id="nama" name="nama" type="text" placeholder="Sesuai KTP" autocomplete="name" required>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label for="nik">NIK (16 angka)</label>
+            <input id="nik" name="nik" type="text" inputmode="numeric" maxlength="16" placeholder="3272xxxxxxxxxxxx" required>
+          </div>
+          <div class="field">
+            <label for="sim">Nomor SIM</label>
+            <input id="sim" name="sim" type="text" maxlength="14" placeholder="SIM A" required>
+          </div>
+        </div>
+        <div class="field" style="margin-top: var(--space-3)">
+          <label for="hp">Nomor WhatsApp</label>
+          <input id="hp" name="hp" type="tel" inputmode="tel" maxlength="14" placeholder="08xxxxxxxxxx" required>
+        </div>
+        <p class="pesan-salah" id="salahData" role="alert" style="margin-top: var(--space-3)"></p>
+        <div class="grid2" style="margin-top: var(--space-2)">
+          <button class="btn btn--garis" type="button" id="kembaliRincian">Kembali</button>
+          <button class="btn btn--utama" type="submit">Konfirmasi sewa</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="panelSukses" class="sukses" hidden>
+      <p style="font-size: var(--text-sm); color: var(--muted)">Kode booking kamu</p>
+      <p class="sukses__kode" id="kodeBooking">AC-00000</p>
+      <p id="ringkasSukses" style="font-size: var(--text-sm)"></p>
+      <div class="grid2">
+        <button class="btn btn--garis" type="button" id="salinRincian">Salin rincian</button>
+        <button class="btn btn--utama" type="button" id="tutupSukses">Selesai</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
