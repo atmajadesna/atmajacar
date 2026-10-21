@@ -14,7 +14,7 @@ const MOBIL = [
   { id: "brio",    nama: "Honda Brio",           kelas: "Hatchback", tahun: 2021, kursi: 5, transmisi: "Matic",  tarif: 275000 },
   { id: "xpander", nama: "Mitsubishi Xpander",   kelas: "MPV",       tahun: 2023, kursi: 7, transmisi: "Matic",  tarif: 425000 },
   { id: "rush",    nama: "Toyota Rush",          kelas: "SUV",       tahun: 2022, kursi: 7, transmisi: "Manual", tarif: 400000 },
-  { id: "carry",   nama: "Suzuki Carry",         kelas: "Pickup",    tahun: 2020, kursi: 2, transmisi: "Manual", tarif: 250000 },
+  { id: "carry",   nama: "Suzuki Carry Blind Van", kelas: "Van",      tahun: 2020, kursi: 2, transmisi: "Manual", tarif: 250000 },
 ];
 
 const state = {
@@ -96,13 +96,13 @@ function svgMobil(kelas) {
       detail: `<path d="M56,62 H74" stroke="var(--paper-3)" stroke-width="3" stroke-linecap="round"/>`,
       roda: [[84, 90], [240, 90]], r: 12,
     },
-    // Pickup: kabin pendek, bak terbuka rendah di belakang
-    Pickup: {
-      body: "M18,84 V62 Q18,52 30,50 H58 L80,30 H150 L164,50 H298 Q306,52 306,62 V84 Z",
-      kaca: "M88,48 L102,35 H144 L156,48 Z",
-      detail: `<rect x="172" y="56" width="126" height="24" rx="3" fill="var(--paper-3)" opacity="0.55"/>
-               <path d="M172,56 V80 M298,56 V80" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>`,
-      roda: [[70, 88], [252, 88]], r: 15,
+    // Van: kotak tinggi, hidung pendek, buritan rata
+    Van: {
+      body: "M22,84 V44 Q22,33 36,31 H284 Q298,33 298,44 V84 Z",
+      kaca: "M40,46 L54,37 H126 L134,46 Z",
+      detail: `<path d="M150,38 V78 M212,38 V78" stroke="var(--paper-3)" stroke-width="3" stroke-linecap="round"/>
+               <rect x="246" y="40" width="44" height="24" rx="3" fill="var(--paper-3)" opacity="0.55"/>`,
+      roda: [[70, 88], [250, 88]], r: 14,
     },
   }[kelas] || {
     body: "M18,84 V62 Q18,52 30,50 H288 Q300,52 300,62 V84 Z",
@@ -139,7 +139,7 @@ function renderArmada() {
           <span class="kartu__status" data-status="${kosong ? "kosong" : "penuh"}">
             ${kosong ? "Tersedia" : "Tersewa"}
           </span>
-          <img class="kartu__foto" src="img/${m.id}.jpg?v=2" alt="Foto ${m.nama}"
+          <img class="kartu__foto" src="img/${m.id}.jpg?v=3" alt="Foto ${m.nama}"
                width="960" height="600" decoding="async"
                onerror="this.closest('.kartu__gambar').classList.add('tanpa-foto')">
           <div class="kartu__ilustrasi">${svgMobil(m.kelas)}</div>
