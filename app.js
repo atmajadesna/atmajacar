@@ -139,7 +139,10 @@ function renderArmada() {
           <span class="kartu__status" data-status="${kosong ? "kosong" : "penuh"}">
             ${kosong ? "Tersedia" : "Tersewa"}
           </span>
-          ${svgMobil(m.kelas)}
+          <img class="kartu__foto" src="img/${m.id}.jpg" alt="Foto ${m.nama}"
+               width="880" height="660" loading="lazy" decoding="async"
+               onerror="this.closest('.kartu__gambar').classList.add('tanpa-foto')">
+          <div class="kartu__ilustrasi">${svgMobil(m.kelas)}</div>
         </div>
         <div class="kartu__isi">
           <h3>${m.nama}</h3>
