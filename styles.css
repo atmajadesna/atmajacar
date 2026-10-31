@@ -329,7 +329,28 @@ td select:focus-visible { outline: 2px solid var(--accent-strong); outline-offse
 .footer p { font-size: var(--text-xs); color: var(--muted); }
 .footer strong { color: var(--ink); font-weight: 600; }
 
+/* Rental workspace refinement: readable labels and reliable touch targets. */
+html { scroll-padding-top: 96px; }
+:focus-visible { outline: 3px solid var(--accent-strong); outline-offset: 3px; }
+.hero::before { display: none; }
+.hero h1 { line-height: 1.08; overflow-wrap: anywhere; }
+.hero__eyebrow { font-family: var(--font-body); font-size: var(--text-sm); text-transform: none; letter-spacing: .02em; }
+.field > label, .stat dt { font-size: var(--text-sm); text-transform: none; letter-spacing: 0; color: var(--ink-3); }
+.field input, .field select, .btn, .chip, td select, .nav a { min-height: 44px; }
+.nav a { display: inline-flex; align-items: center; }
+.chip { white-space: nowrap; transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out); }
+.kepala p { font-size: var(--text-base); max-width: 60ch; }
+.kartu__isi { gap: var(--space-4); }
+.kartu__foto { object-fit: contain; }
+.topbar__inner { flex-wrap: wrap; }
+@media(max-width: 420px) {
+ .topbar__inner { gap: var(--space-2); }
+ .brand { font-size: 1rem; letter-spacing: .06em; }
+ .nav { gap: var(--space-3); }
+ .statistik { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
 /* ---------- responsif ---------- */
+
 @media (max-width: 900px) {
   .cari { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cari .btn { grid-column: 1 / -1; }

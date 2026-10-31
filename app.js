@@ -169,7 +169,7 @@ function renderArmada() {
     const sisa = daftar.filter((m) => mobilTersedia(m.id, state.mulai, state.kembali)).length;
     ket.textContent = `${sisa} dari ${daftar.length} unit kosong untuk ${hari} hari (${state.mulai} → ${state.kembali}).`;
   } else {
-    ket.textContent = "Enam unit, semua rutin servis tiap 5.000 km. Pilih tanggal dulu untuk melihat yang kosong.";
+    ket.textContent = "Enam kendaraan contoh. Pilih tanggal untuk menyaring ketersediaan berdasarkan pesanan lokal.";
   }
 }
 
